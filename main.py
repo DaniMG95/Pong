@@ -44,19 +44,18 @@ def draw_puntuacion(jugador,ia):
     screen.blit(texto_jugador,((screen_width//2)-120,40))
     screen.blit(texto_ia,((screen_width//2)+60,40))
 
+def IA():
+    ia.top=bola.top-50
 
 def mover_rectangulo():
     global speed
     global accion
     if(accion=="UP" and jugador.top>10):
         jugador.top-=3
-        ia.top-=3
     elif(accion=="DOWN" and jugador.bottom+10< screen_height):
         jugador.top+=3
-        ia.top+=3
     else:
         jugador.top=jugador.top
-        ia.top=ia.top
 
 def controller(event,pygame):
     global speed
@@ -116,6 +115,7 @@ while True:
         controller(event,pygame)
     mover_bola()
     mover_rectangulo()
+    IA()
     pygame.draw.rect(screen,white_color,jugador)
     pygame.draw.ellipse(screen,white_color,bola)
     pygame.draw.rect(screen,white_color,ia)
